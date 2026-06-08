@@ -197,11 +197,11 @@ input[type="file"] { display: none; }
       mapLink.innerHTML = '<span>⬇ SymbolMap.json</span><span class="download-icon">↓</span>';
       downloadsEl.appendChild(mapLink);
 
-      let fridaContent = 'IL2Cpp.\$config.exports = {\\n';
+      let fridaContent = 'IL2Cpp.$config.exports = {\n';
       for (const [api, obf] of Object.entries(map)) {
-        fridaContent += '  ' + api + ': () => IL2Cpp.module.findExportByName("' + obf + '"),\\n';
+        fridaContent += '  ' + api + ': () => IL2Cpp.module.findExportByName("' + obf + '"),\n';
       }
-      fridaContent += '};\\n';
+      fridaContent += '};\n';
 
       const fridaBlob = new Blob([fridaContent], { type: 'text/javascript' });
       const fridaUrl = URL.createObjectURL(fridaBlob);
@@ -220,4 +220,4 @@ input[type="file"] { display: none; }
 </body>
 </html>`;
 
-app.listen(PORT, () => console.log(\`Server running on port \${PORT}\`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
